@@ -1,0 +1,15 @@
+name: Solicitud de Mejora a la Aplicación
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  solicitud_mejora:
+    if: github.event.label.name == 'mejora-aplicacion'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Revisar solicitud de mejora
+        run: |
+          echo "Mejora solicitada: ${{ github.event.issue.title }}"
+          echo "Descripción: ${{ github.event.issue.body }}"
