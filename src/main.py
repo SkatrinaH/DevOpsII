@@ -5,26 +5,37 @@ def main():
     gestor_clientes = GestionClientes()
     gestor_servicios = GestionServicios()
 
-    # Agregar clientes
-    print(gestor_clientes.agregar_cliente("Juan Pérez", "juan@example.com", "123456789"))
-    print(gestor_clientes.agregar_cliente("Ana Gómez", "ana@example.com", "987654321"))
+    while True:
+        print("\nMenú de opciones:")
+        print("1. Agregar cliente")
+        print("2. Ver clientes")
+        print("3. Agregar servicio")
+        print("4. Ver servicios")
+        print("5. Salir")
+        opcion = input("Seleccione una opción: ")
 
-    # Agregar servicios
-    print(gestor_servicios.agregar_servicio("Internet", 50, "Conexión de 100 Mbps"))
-    print(gestor_servicios.agregar_servicio("Telefonía", 30, "Llamadas ilimitadas nacionales"))
-    
-    # Asignar servicios a clientes
-    print(gestor_clientes.asignar_servicio_a_cliente("Juan Pérez", gestor_servicios, "Internet"))
-    print(gestor_clientes.asignar_servicio_a_cliente("Ana Gómez", gestor_servicios, "Telefonía"))
-
-    # Mostrar clientes y servicios asignados
-    print("\nClientes registrados:")
-    for cliente in gestor_clientes.mostrar_clientes():
-        print(cliente)
-
-    print("\nServicios disponibles:")
-    for servicio in gestor_servicios.mostrar_servicios():
-        print(servicio)
+        if opcion == "1":
+            nombre = input("Nombre: ")
+            email = input("Email: ")
+            telefono = input("Teléfono: ")
+            print(gestor_clientes.agregar_cliente(nombre, email, telefono))
+        elif opcion == "2":
+            print("\nClientes registrados:")
+            for cliente in gestor_clientes.mostrar_clientes():
+                print(cliente)
+        elif opcion == "3":
+            nombre = input("Nombre del servicio: ")
+            costo = float(input("Costo: "))
+            descripcion = input("Descripción: ")
+            print(gestor_servicios.agregar_servicio(nombre, costo, descripcion))
+        elif opcion == "4":
+            print("\nServicios disponibles:")
+            for servicio in gestor_servicios.mostrar_servicios():
+                print(servicio)
+        elif opcion == "5":
+            break
+        else:
+            print("Opción no válida. Intente de nuevo.")
 
 if __name__ == "__main__":
     main()
