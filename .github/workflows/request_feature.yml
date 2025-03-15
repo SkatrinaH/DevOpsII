@@ -1,0 +1,13 @@
+name: Request Feature
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  review_feature:
+    if: github.event.label.name == 'feature-request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Revisar nueva solicitud de función
+        run: echo "Nueva función solicitada: ${{ github.event.issue.title }}"
