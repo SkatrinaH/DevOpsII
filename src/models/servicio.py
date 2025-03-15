@@ -6,3 +6,14 @@ class Servicio:
 
     def mostrar_info(self):
         return f"Servicio: {self.nombre}, Costo: ${self.costo}, Descripción: {self.descripcion}"
+
+    def to_dict(self):
+        return {
+            "nombre": self.nombre,
+            "costo": self.costo,
+            "descripcion": self.descripcion
+        }
+
+    @staticmethod
+    def from_dict(data):
+        return Servicio(data["nombre"], data["costo"], data.get("descripcion", ""))
