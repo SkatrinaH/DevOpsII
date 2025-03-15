@@ -1,0 +1,32 @@
+name: Create Client
+
+on:
+  workflow_dispatch:
+    inputs:
+      client_name:
+        description: 'Nombre del Cliente'
+        required: true
+      client_email:
+        description: 'Correo del Cliente'
+        required: true
+      client_phone:
+        description: 'Teléfono del Cliente'
+        required: true
+
+jobs:
+  create_client:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ejecutar script de creación de cliente
+        run: python src/main.py --create "${{ github.event.inputs.client_name }}" "${{ github.event.inputs.client_email }}" "${{ github.event.inputs.client_phone }}"

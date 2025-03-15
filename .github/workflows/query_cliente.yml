@@ -1,0 +1,26 @@
+name: Query Client
+
+on:
+  workflow_dispatch:
+    inputs:
+      client_name:
+        description: 'Nombre del Cliente a Consultar'
+        required: true
+
+jobs:
+  query_client:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Consultar Cliente
+        run: python src/main.py --query "${{ github.event.inputs.client_name }}"
