@@ -1,0 +1,15 @@
+name: Solicitud de Nueva Función
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  solicitud_funcion:
+    if: github.event.label.name == 'nueva-funcion'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Revisar solicitud de nueva función
+        run: |
+          echo "Nueva función solicitada: ${{ github.event.issue.title }}"
+          echo "Descripción: ${{ github.event.issue.body }}"
